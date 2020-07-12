@@ -1,7 +1,7 @@
 {
-    "name": "mixerapi/cakephp-plugin-template",
-    "description": "CakePHP skeleton plugin",
-    "type": "project",
+    "name": "mixerapi/cakephp-hal-view",
+    "description": "A Hypertext Application Language (HAL) view for CakePHP",
+    "type": "library",
     "license": "MIT",
     "keywords": ["cakephp"],
     "require": {
@@ -21,8 +21,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "MixerApiHalView\\Test\\": "tests/",
-            "MixerApiHalView\\Test\\App\\": "tests/test_app/App/"
+            "MixerApiHalView\\Test\\": "tests/"
         }
     },
     "scripts": {
