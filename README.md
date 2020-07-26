@@ -229,7 +229,7 @@ $json = (new JsonSerializer($data))->asJson(JSON_PRETTY_PRINT); // asJson argume
 # array
 $hal = (new JsonSerializer($data))->getData();
 
-# with `_links.self.href` and pagination meta data, not ServerRequest and PaginatorHelper
+# json with `_links.self.href` and pagination meta data
 use Cake\Http\ServerRequest;
 use Cake\View\Helper\PaginatorHelper;
 $json = (new JsonSerializer($data, new ServerRequest(), new PaginatorHelper()))->asJson();
