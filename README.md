@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mixerapi/hal-view.svg?style=flat-square)](https://packagist.org/packages/mixerapi/hal-view)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
-[![Build Status](https://travis-ci.org/github/mixerapi/hal-view)](https://travis-ci.org/github/mixerapi/hal-view)
+[![Build Status](https://travis-ci.org/mixerapi/hal-view.svg?branch=master)](https://travis-ci.org/github/mixerapi/hal-view)
 [![Coverage Status](https://coveralls.io/repos/github/mixerapi/hal-view/badge.svg?branch=master)](https://coveralls.io/github/mixerapi/hal-view?branch=master)
 
 *Note, this is an alpha stage package.
