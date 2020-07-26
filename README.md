@@ -209,7 +209,7 @@ Output:
 If the Actor and Film entities were implementing `MixerApi\HalView\HalResourceInterface` then the example above would 
 include the `_links` property for each serialized entity.
 
-And thats it, try it out for yourself:
+Try it out for yourself:
 
 ```bash
 # json
@@ -218,7 +218,7 @@ curl -X GET "http://localhost:8765/actors" -H "accept: application/hal+json"
 
 ## Serializing
 
-Optionally, you can serialize data into HAL using `HalSerializer`. Example:
+Optionally, you can serialize data into HAL using `JsonSerializer`. Example:
 
 ```php
 use MixerApi\HalView\JsonSerializer;
