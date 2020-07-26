@@ -1,17 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace MixerApiHalView;
+namespace MixerApi\HalView;
 
 use Cake\Console\CommandCollection;
 use Cake\Core\BasePlugin;
 use Cake\Core\PluginApplicationInterface;
 
-/**
- * Class Plugin
- *
- * @package App
- */
 class Plugin extends BasePlugin
 {
     /**
@@ -21,6 +16,7 @@ class Plugin extends BasePlugin
     public function bootstrap(PluginApplicationInterface $app): void
     {
         parent::bootstrap($app);
+        (new ResponseModifier())->listen();
     }
 
     /**

@@ -54,7 +54,7 @@ define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 define('CORE_TESTS', CORE_PATH . 'tests' . DS);
 define('CORE_TEST_CASES', CORE_TESTS . 'TestCase');
-define('TEST_APP', CORE_TESTS . 'test_app' . DS);
+define('TEST_APP',ROOT);
 define('APP', ROOT . 'App' . DS);
 
 // phpcs:disable
@@ -74,11 +74,11 @@ mb_internal_encoding('UTF-8');
 
 Configure::write('debug', true);
 Configure::write('App', [
-    'namespace' => 'App',
+    'namespace' => 'TestApp',
     'encoding' => 'UTF-8',
     'base' => false,
     'baseUrl' => false,
-    'dir' => APP_DIR,
+    'dir' => APP,
     'webroot' => 'webroot',
     'fullBaseUrl' => 'http://localhost',
     'imageBaseUrl' => 'img/',
@@ -105,12 +105,10 @@ Cache::setConfig([
 ]);
 
 // Ensure default test connection is defined
-if (!getenv('DB_DSN')) {
-    putenv('DB_DSN=sqlite:///:memory:');
-}
-
-ConnectionManager::setConfig('test', ['url' => getenv('DB_DSN')]);
-ConnectionManager::setConfig('test_custom_i18n_datasource', ['url' => getenv('DB_DSN')]);
+putenv('db_dsn=sqlite://127.0.0.1/mixerapihalview_test');
+putenv('DB=sqlite');
+ConnectionManager::setConfig('default', ['url' => getenv('db_dsn')]);
+ConnectionManager::setConfig('test', ['url' => getenv('db_dsn')]);
 
 Configure::write('Session', [
     'defaults' => 'php',

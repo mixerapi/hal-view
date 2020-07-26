@@ -1,6 +1,7 @@
 # MixerApi specific files #
 ############################
 /coverage-reports/
+/mixerapihalview_test #sqlite database for unit testing
 
 # CakePHP specific files #
 ##########################
