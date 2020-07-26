@@ -218,7 +218,7 @@ curl -X GET "http://localhost:8765/actors" -H "accept: application/hal+json"
 
 ## Serializing
 
-Optionally, you can serialize data into HAL using `JsonSerializer`. Example:
+Optionally, you can manually serialize data into HAL using `JsonSerializer`. This is the same class that the main HalJsonView uses. Example:
 
 ```php
 use MixerApi\HalView\JsonSerializer;
