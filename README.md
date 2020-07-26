@@ -7,7 +7,7 @@
 
 *Note, this is an alpha stage package.
 
-A Hypertext Application Language ([HAL](http://stateless.co/hal_specification.html)) View for CakePHP. This plugin 
+A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specification.html)) View for CakePHP. This plugin 
 supports links, pagination, and embedded resources. Once setup any request with `application/hal+json` will be 
 rendered by this plugin.
 
