@@ -1,11 +1,14 @@
 language: php
 
+dist: bionic
+
+services:
+  - sqlite3
+
 php:
   - 7.2
   - 7.3
   - 7.4
-
-dist: bionic
 
 matrix:
   fast_finish: true

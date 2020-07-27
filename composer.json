@@ -14,7 +14,7 @@
         "cakephp/cakephp-codesniffer": "^4.2",
         "phpstan/phpstan": "^0.12.32",
         "phpmd/phpmd": "^2.8",
-        "ext-sqlite": "*"
+        "ext-sqlite3": "*"
     },
     "autoload": {
         "psr-4": {
