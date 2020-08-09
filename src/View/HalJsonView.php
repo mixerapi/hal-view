@@ -62,7 +62,7 @@ class HalJsonView extends JsonView
     {
         parent::initialize();
         $this->loadHelper('Paginator', [
-            'templates' => 'MixerApi/HalView.paginator-template'
+            'templates' => 'MixerApi/HalView.paginator-template',
         ]);
     }
 
