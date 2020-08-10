@@ -35,15 +35,18 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    - name: Install dependencies
+    - name: PHP Unit
       run: vendor/bin/phpunit
-    - name: Extras
+    - name: Static Analysis
       if: ${{ matrix.php-versions }} == '7.4'
       run: |
-        export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=clover.xml
         vendor/bin/phpcs --report=summary src
         vendor/bin/phpstan analyse -n --no-progress src
         vendor/bin/phpmd src/ ansi phpmd.xml
+    - name: Static Analysis
+      if: ${{ matrix.php-versions }} == '7.4'
+      run: export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=clover.xml
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
