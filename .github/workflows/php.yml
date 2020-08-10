@@ -48,13 +48,11 @@ jobs:
       - name: PHP Unit
         if: ${{ matrix.php-versions }} != '7.4'
         run: vendor/bin/phpunit
-      - name: Static Analysis
-        if: ${{ matrix.php-versions }} == '7.4'
+      - name: Upload coverage results to Coveralls
+        if: ${{ matrix.php-versions }} != '7.4'
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=clover.xml
-          vendor/bin/phpcs --report=summary src
-          vendor/bin/phpstan analyse -n --no-progress src
-          vendor/bin/phpmd src/ ansi phpmd.xml
-          wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-          chmod +x php-coveralls.phar
-          ./php-coveralls.phar
+          composer global require twinh/php-coveralls
+          php-coveralls --coverage_clover=clover.xml -v
