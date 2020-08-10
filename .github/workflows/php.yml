@@ -46,10 +46,17 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: PHP Unit
+        if: ${{ matrix.php-versions }} != '7.4'
         run: vendor/bin/phpunit
       - name: Static Analysis
         if: ${{ matrix.php-versions }} == '7.4'
         run: |
+          export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=clover.xml
           vendor/bin/phpcs --report=summary src
           vendor/bin/phpstan analyse -n --no-progress src
           vendor/bin/phpmd src/ ansi phpmd.xml
+      - name: Coveralls
+        if: ${{ matrix.php-versions }} == '7.4'
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
