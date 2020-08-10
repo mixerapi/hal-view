@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        operating-system: [ ubuntu-18.04, windows-2019 ]
-        php: ['7.2', '7.3', '7.4']
+        operating-system: [ ubuntu-18.04 ]
+        php: [ '7.2', '7.3', '7.4' ]
 
     name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
@@ -47,6 +47,3 @@ jobs:
         vendor/bin/phpcs --report=summary src
         vendor/bin/phpstan analyse -n --no-progress src
         vendor/bin/phpmd src/ ansi phpmd.xml
-        wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-        chmod +x php-coveralls.phar
-        ./php-coveralls.phar
