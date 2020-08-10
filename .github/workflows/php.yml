@@ -27,9 +27,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        key: ${{ matrix.php-versions }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.os }}-php-
+          ${{ matrix.php-versions }}-php-
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
@@ -43,10 +43,3 @@ jobs:
         vendor/bin/phpcs --report=summary src
         vendor/bin/phpstan analyse -n --no-progress src
         vendor/bin/phpmd src/ ansi phpmd.xml
-    - name: Coverage
-      if: ${{ matrix.php-versions }} == '7.4'
-      run: |
-        export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=clover.xml
-        wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.1.0/php-coveralls.phar
-        chmod +x php-coveralls.phar
-        ./php-coveralls.phar
