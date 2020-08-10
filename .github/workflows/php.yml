@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  run:
 
     runs-on: ubuntu-latest
     strategy:
@@ -15,34 +15,41 @@ jobs:
         operating-system: [ ubuntu-18.04 ]
         php-versions: [ '7.2', '7.3', '7.4' ]
 
-    name: PHP ${{ matrix.php-versions }} Test
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.operating-system }}
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: PHP Version
-      run: php -v
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, intl
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: PHP Version
+        run: php -v
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ matrix.php-versions }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ matrix.php-versions }}-php-
+      - name: Validate composer.json and composer.lock
+        run: composer validate
 
-    - name: Install dependencies
-      if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ matrix.php-versions }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ matrix.php-versions }}-php-
 
-    - name: PHP Unit
-      run: vendor/bin/phpunit
-    - name: Static Analysis
-      if: ${{ matrix.php-versions }} == '7.4'
-      run: |
-        vendor/bin/phpcs --report=summary src
-        vendor/bin/phpstan analyse -n --no-progress src
-        vendor/bin/phpmd src/ ansi phpmd.xml
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: PHP Unit
+        run: vendor/bin/phpunit
+      - name: Static Analysis
+        if: ${{ matrix.php-versions }} == '7.4'
+        run: |
+          vendor/bin/phpcs --report=summary src
+          vendor/bin/phpstan analyse -n --no-progress src
+          vendor/bin/phpmd src/ ansi phpmd.xml
