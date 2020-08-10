@@ -42,8 +42,8 @@
         "coverage": "phpunit --coverage-html coverage-reports/"
     },
     "support": {
-        "issues": "https://github.com/mixerapi/",
-        "source": "https://github.com/mixerapi/"
+        "issues": "https://github.com/mixerapi/hal-view/issues",
+        "source": "https://github.com/mixerapi/hal-view"
     },
     "authors": [
         {
