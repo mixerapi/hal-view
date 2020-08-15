@@ -7,7 +7,7 @@
 [![CakePHP](https://img.shields.io/badge/cakephp-%3E%3D%204.0-red?logo=cakephp)](https://book.cakephp.org/4/en/index.html)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg?logo=php)](https://php.net/)
 
-*Note, this is an alpha stage package.*
+*Note, this is a beta library*
 
 A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specification.html)) View for CakePHP. This plugin 
 supports links, pagination, and embedded resources. Once setup any request with `application/hal+json` will be 
