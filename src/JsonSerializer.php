@@ -5,6 +5,7 @@ namespace MixerApi\HalView;
 
 use Cake\Datasource\EntityInterface;
 use Cake\Http\ServerRequest;
+use Cake\ORM\Entity;
 use Cake\ORM\ResultSet;
 use Cake\Utility\Inflector;
 use Cake\View\Helper\PaginatorHelper;
@@ -56,8 +57,10 @@ class JsonSerializer
 
         if ($hal instanceof ResultSet) {
             $this->data = $this->collection($hal);
-        } else {
+        } else if (is_subclass_of($hal,Entity::class)) {
             $this->data = $this->item($hal);
+        } else {
+            $this->data = $serialize;
         }
     }
 
