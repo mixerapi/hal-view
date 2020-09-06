@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
 use Cake\ORM\ResultSet;
 use Cake\Utility\Inflector;
 use Cake\View\Helper\PaginatorHelper;
+use MixerApi\Core\View\SerializableAssociation;
 use ReflectionClass;
 use ReflectionException;
 use RuntimeException;
@@ -106,11 +107,11 @@ class JsonSerializer
                 $this->recursion($item);
             }
         } elseif ($mixed instanceof EntityInterface) {
-            $embeddableHalResource = new EmbeddableHalResource($mixed);
+            $serializableAssociation = new SerializableAssociation($mixed);
 
-            $mixed = $this->resource($mixed, $embeddableHalResource);
+            $mixed = $this->resource($mixed, $serializableAssociation);
 
-            foreach ($embeddableHalResource->getEmbeddable() as $property => $value) {
+            foreach ($serializableAssociation->getAssociations() as $property => $value) {
                 $this->recursion($value);
             }
         }
@@ -189,14 +190,14 @@ class JsonSerializer
      * Requires an instance of Cake\ORM\Entity or EntityInterface and an EmbeddableHalResource instance
      *
      * @param \Cake\Datasource\EntityInterface $entity Cake\ORM\Entity or EntityInterface
-     * @param \MixerApi\HalView\EmbeddableHalResource $embeddableHal EmbeddableHalResource
+     * @param \MixerApi\Core\View\SerializableAssociation $serializableAssociation SerializableAssociation
      * @return \Cake\Datasource\EntityInterface
      */
-    private function resource(EntityInterface $entity, EmbeddableHalResource $embeddableHal): EntityInterface
+    private function resource(EntityInterface $entity, SerializableAssociation $serializableAssociation): EntityInterface
     {
         $embedded = [];
 
-        foreach ($embeddableHal->getEmbeddable() as $property => $value) {
+        foreach ($serializableAssociation->getAssociations() as $property => $value) {
             if (!is_array($value) && !$value instanceof EntityInterface) {
                 continue;
             }

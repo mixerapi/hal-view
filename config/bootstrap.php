@@ -2,10 +2,10 @@
 use Cake\Http\ServerRequest;
 
 ServerRequest::addDetector(
-    'hal',
+    'haljson',
     [
-        'accept' => ['application/hal+json'],
+        'accept' => ['application/hal+json','application/vnd.hal+json'],
         'param' => '_ext',
-        'value' => 'hal+json',
+        'value' => 'haljson',
     ]
 );

@@ -35,7 +35,7 @@ class HalJsonView extends JsonView
      *
      * @var string
      */
-    protected $_responseType = 'hal+json';
+    protected $_responseType = 'haljson';
 
     /**
      * Default config options.

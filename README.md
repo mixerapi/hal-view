@@ -33,18 +33,14 @@ public function bootstrap(): void
 
 ## Setup
 
-Modify your `RequestHandler` component to support HAL views. This is typically done in your AppController:
+Your controllers must be using the `RequestHandler` component. This is typically loaded in your `AppController`.
 
 ```php
 # src/Controller/AppController.php
 public function initialize(): void
 {
     parent::initialize();
-    $this->loadComponent('RequestHandler', [
-        'viewClassMap' => [
-            'hal+json' => 'MixerApi/HalView.HalJson'
-        ]
-    ]);
+    $this->loadComponent('RequestHandler');
     // other logic... 
 }
 ```
