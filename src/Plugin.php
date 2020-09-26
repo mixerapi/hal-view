@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace MixerApi\HalView;
 
-use Cake\Console\CommandCollection;
 use Cake\Core\BasePlugin;
 use Cake\Core\PluginApplicationInterface;
 use MixerApi\Core\Response\ResponseModifier;

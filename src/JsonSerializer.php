@@ -58,7 +58,7 @@ class JsonSerializer
 
         if ($hal instanceof ResultSet) {
             $this->data = $this->collection($hal);
-        } else if (is_subclass_of($hal,Entity::class)) {
+        } elseif (is_subclass_of($hal, Entity::class)) {
             $this->data = $this->item($hal);
         } else {
             $this->data = $serialize;
@@ -190,14 +190,14 @@ class JsonSerializer
      * Requires an instance of Cake\ORM\Entity or EntityInterface and an EmbeddableHalResource instance
      *
      * @param \Cake\Datasource\EntityInterface $entity Cake\ORM\Entity or EntityInterface
-     * @param \MixerApi\Core\View\SerializableAssociation $serializableAssociation SerializableAssociation
+     * @param \MixerApi\Core\View\SerializableAssociation $association SerializableAssociation
      * @return \Cake\Datasource\EntityInterface
      */
-    private function resource(EntityInterface $entity, SerializableAssociation $serializableAssociation): EntityInterface
+    private function resource(EntityInterface $entity, SerializableAssociation $association): EntityInterface
     {
         $embedded = [];
 
-        foreach ($serializableAssociation->getAssociations() as $property => $value) {
+        foreach ($association->getAssociations() as $property => $value) {
             if (!is_array($value) && !$value instanceof EntityInterface) {
                 continue;
             }

@@ -13,6 +13,13 @@ A Hypertext Application Language ([HAL+JSON](http://stateless.co/hal_specificati
 supports links, pagination, and embedded resources. Once setup any request with `application/hal+json` will be 
 rendered by this plugin.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Serializing](#serializing)
+
 ## Installation
 
 ```bash
