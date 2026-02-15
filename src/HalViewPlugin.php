@@ -6,7 +6,7 @@ namespace MixerApi\HalView;
 use Cake\Core\BasePlugin;
 use Cake\Core\PluginApplicationInterface;
 
-class Plugin extends BasePlugin
+class HalViewPlugin extends BasePlugin
 {
     /**
      * Plugin name.
